@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
 }
 
 resource "aws_security_group" "instance_security_group" {
@@ -40,14 +40,14 @@ resource "aws_security_group" "instance_security_group" {
 }
 
 resource "aws_instance" "jenkins" {
-  ami           = "ami-0c55b159cbfafe1f0" # centos 7
+  ami           = "ami-0aedf6b1cb669b4c7" # centos 7
   instance_type = "t2.large"
 
   tags = {
     Name = "jenkins"
   }
 
-  block_device {
+  ebs_block_device {
     device_name = "/dev/sdb"
     volume_type = "gp2"
     volume_size = 20
@@ -61,14 +61,14 @@ resource "aws_instance" "jenkins" {
 }
 
 resource "aws_instance" "sonarqube" {
-  ami           = "ami-0c55b159cbfafe1f0" # centos 7
+  ami           = "ami-0aedf6b1cb669b4c7" # centos 7
   instance_type = "t2.large"
 
   tags = {
     Name = "sonarqube"
   }
 
-  block_device {
+  ebs_block_device {
     device_name = "/dev/sdb"
     volume_type = "gp2"
     volume_size = 20
@@ -82,14 +82,14 @@ resource "aws_instance" "sonarqube" {
 }
 
 resource "aws_instance" "nexus" {
-  ami           = "ami-0c55b159cbfafe1f0" # centos 7
+  ami           = "ami-0aedf6b1cb669b4c7" # centos 7
   instance_type = "t2.large"
 
   tags = {
     Name = "nexus"
   }
 
-  block_device {
+  ebs_block_device {
     device_name = "/dev/sdb"
     volume_type = "gp2"
     volume_size = 20
@@ -102,14 +102,14 @@ resource "aws_instance" "nexus" {
   associate_public_ip_address = true
 }
 resource "aws_instance" "minikube" {
-  ami           = "ami-0b6b955c5c7f7d092" # ubuntu 22
+  ami           = "ami-0557a15b87f6559cf" # ubuntu 22
   instance_type = "t2.large"
 
   tags = {
     Name = "minikube"
   }
 
-  block_device {
+  ebs_block_device {
     device_name = "/dev/sdb"
     volume_type = "gp2"
     volume_size = 20
